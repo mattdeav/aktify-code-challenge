@@ -1,4 +1,5 @@
 from flask import Flask
+from flask.json import jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -10,4 +11,4 @@ CORS(app)
 
 @app.route('/')
 def index():
-    return 'Hello, from Flask!'
+    return jsonify('Hello, from Flask!')
