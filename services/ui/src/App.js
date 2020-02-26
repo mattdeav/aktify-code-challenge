@@ -1,24 +1,18 @@
 import React from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import CampaignDetailsView from './views/CampaignDetailsView';
+import CampaignsView from './views/CampaignsView';
+import DashboardView from './views/DashboardView';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+    <Router>
+        <Switch>
+          <Route exact path="/campaigns" component={CampaignsView} />
+          <Route exact path="/campaigns/:id" component={CampaignDetailsView} />
+          <Route exact path="/" component={DashboardView} />
+        </Switch>
+    </Router>
+);
 
 export default App;
