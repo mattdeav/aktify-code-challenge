@@ -1,6 +1,8 @@
 version: "3.7"
 
 services:
+
+  # API server
   api:
     container_name: aktify_api_1
     build:
@@ -22,6 +24,7 @@ services:
       - ./services/api:/app
 
 
+  # Database server
   db:
     container_name: aktify_db_1
     image: postgres:12.2-alpine
@@ -36,6 +39,7 @@ services:
       - aktify_db_data:/var/lib/postgresql/data
 
 
+  # Database administration UI
   dbAdmin:
     container_name: aktify_db_admin_1
     depends_on:
@@ -52,6 +56,7 @@ services:
       - aktify_db_admin_data:/var/lib/pgadmin
 
 
+# Persistent volumes retain important data even after running `docker-compose down`
 volumes:
   aktify_db_data:
   aktify_db_admin_data:
