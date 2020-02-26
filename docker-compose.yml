@@ -56,6 +56,27 @@ services:
       - aktify_db_admin_data:/var/lib/pgadmin
 
 
+  # Web interface
+  ui:
+    build:
+      context: ./services/ui
+      target: development
+    container_name: aktify_ui_1
+    depends_on:
+      - api
+    environment:
+      - BROWSER=none
+      - NODE_ENV=development
+      - PORT=3000
+      - REACT_APP_API_URL=http://localhost:${API_PORT:-5051}
+    ports:
+      - ${UI_PORT:-5052}:3000
+    volumes:
+      - ./services/ui:/app
+      # mounting this anonymous volume prevents copying node_modules from the host to the container
+      - /app/node_modules
+
+
 # Persistent volumes retain important data even after running `docker-compose down`
 volumes:
   aktify_db_data:
