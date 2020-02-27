@@ -98,3 +98,4 @@ Pay special attention to the following best practices:
 
 - **_Avoid excessive styles._** Most styles should be focused on layout, not on design.
 - **_Avoid class-based React components** Most components can be easily implemented using React Hooks inside functional components. Very few components need the fine-grained controls of class-based components.
+- **_Keep prop types up-to-date_** Make sure to define `propTypes` and `defaultProps` for new components and also to update them when props are altered. Pay attention to the console warnings and do not allow new prop type warnings to appear. Any number of errors from a previous change makes it difficult to know if your current change introduced the errors. 
