@@ -2,6 +2,8 @@
 
 `Aktify Code Challenge UI` is a web UI built using [React](https://reactjs.org/) and [Create React App](https://github.com/facebook/create-react-app).
 
+By default, the API can be accessed at http://localhost:5052.
+
 
 ## Table of contents
 

@@ -12,7 +12,7 @@ _WARNING: This repository comes as-is. Aktify does not provide support or assume
 - [Architecture](#architecture)
     - [Database](#database)
     - [API](#api)
-        - [API database access](#api-database-access)
+    - [UI](#ui)
 
 
 ## Getting started
@@ -56,18 +56,9 @@ By default the Postgres database can be found at http://localhost:5432 and PG Ad
 
 ### API
 
-The API for _Aktify Code Challenge_ is built using Python and the popular Flask web framework.
+See [services/api/README.md](services/api/README.md) for more information.
 
-By default, the API can be accessed at http://localhost:5051.
 
-#### API database access
+### UI
 
-The API accesses the database using [SQLAlchemy](https://docs.sqlalchemy.org/en/13/), a popular ORM for Python. Database schema migrations are managed by SQLAlchemy's [Alembic](https://alembic.sqlalchemy.org/) tool.
-
-Before the application starts, Alembic migrations are executed to ensure that the database schema is in sync with the models defined in the API.
-
-You should test Alembic migrations before making commits. You can do this by running the following commands from an interactive terminal inside the API container. To start the interactive terminal, run `docker-compose exec api sh`. Then use the Alembic commands from the interactive terminal command line.
-
-- `alembic revision -m "Description of the schema mutation"` to generate a new migration.
-- `alembic upgrade head` to run all migrations up to the latest
-- `alembic downgrade -1` to undo the last migration
+See [services/ui/README.md](services/ui/README.md) for more information.
