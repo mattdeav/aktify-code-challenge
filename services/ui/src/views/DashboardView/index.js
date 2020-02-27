@@ -1,7 +1,9 @@
-import { useQuery } from '@apollo/client';
+import {useQuery} from '@apollo/client';
+import Typography from '@material-ui/core/Typography';
 import gql from 'graphql-tag';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import Title from '../../components/Title';
+import {useViewTitle} from '../../contexts/ViewContext';
 
 const FETCH_FLASK_MESSAGE = gql`
     query FetchFlaskMessage {
@@ -10,6 +12,7 @@ const FETCH_FLASK_MESSAGE = gql`
 `;
 
 const DashboardView = () => {
+    useViewTitle('Dashboard');
     const {loading, error, data} = useQuery(FETCH_FLASK_MESSAGE);
 
     if (loading) {
@@ -22,14 +25,10 @@ const DashboardView = () => {
 
     return (
         <>
-            <h1>Dashboard View</h1>
-            <p>A short message from your Flask API: "{data?.message}"</p>
-
-            <ul>
-                <li><Link to="/campaigns">Campaign List</Link></li>
-            </ul>
+            <Title>Dashboard View</Title>
+            <Typography component="p" variant="body1">A short message from your Flask API: "{data?.message}"</Typography>
         </>
     );
-}
+};
 
 export default DashboardView;

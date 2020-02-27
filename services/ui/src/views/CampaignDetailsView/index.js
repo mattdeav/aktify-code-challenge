@@ -1,15 +1,17 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
+import {useViewTitle} from '../../contexts/ViewContext';
+import Title from "../../components/Title";
+import Typography from "@material-ui/core/Typography";
 
 const CampaignDetailsView = () => {
+    useViewTitle('Campaign Details');
     const { id } = useParams();
 
     return (
         <>
-            <h1>Campaign Details View</h1>
-            <p>
-                Campaign details for campaign with id: {id}
-            </p>
+            <Title>Campaign Details View</Title>
+            <Typography component="p" variant="body1">Details for campaign "{id}" coming soon...</Typography>
         </>
     );
 };

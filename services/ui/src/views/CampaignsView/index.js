@@ -1,17 +1,54 @@
+import {useQuery} from '@apollo/client';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import gql from 'graphql-tag';
 import React from 'react';
-import {Link} from 'react-router-dom';
+import CampaignList from '../../components/CampaignList';
+import Title from '../../components/Title';
+import {useViewTitle} from '../../contexts/ViewContext';
 
-const CampaignsView = () => (
-    <>
-        <h1>Campaigns View</h1>
-        <p>Click on a campaign to navigate to it's details view</p>
 
-        <ul>
-            <li><Link to="/campaigns/1">Campaign 1</Link></li>
-            <li><Link to="/campaigns/bigAccount">Big Account Campaign</Link></li>
-            <li><Link to="/campaigns/realtime">Realtime Campaign</Link></li>
-        </ul>
-    </>
-);
+const GET_CAMPAIGNS = gql`
+    query ListCampaigns {
+        campaigns @rest(type: "[Campaign]", path: "/campaigns") {
+            id
+            name
+            createdOn
+            updatedOn
+        }
+    }
+`;
+
+const CampaignsView = () => {
+    useViewTitle('Campaigns');
+
+    const {loading, error, data} = useQuery(GET_CAMPAIGNS);
+
+    if (loading) {
+        return <span>Loading...</span>;
+    }
+
+    if (error) {
+        return <span>An error occurred. We could not fetch the Flask API message at <code>/</code></span>;
+    }
+
+    const campaigns = data?.campaigns || [];
+
+    return (
+        <Grid container>
+            <Grid container>
+                <Title>Campaigns View</Title>
+            </Grid>
+
+            <Grid container>
+                <Grid item lg>
+                    <Paper>
+                        <CampaignList campaigns={campaigns} />
+                    </Paper>
+                </Grid>
+            </Grid>
+        </Grid>
+    );
+};
 
 export default CampaignsView;
