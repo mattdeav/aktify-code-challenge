@@ -10,3 +10,10 @@ def index():
     campaigns = Campaign.query.all()
 
     return jsonify([campaign.serialize for campaign in campaigns])
+
+
+@campaign_blueprint.route('/<campaign_id>', methods=['GET'])
+def get(campaign_id):
+    campaign = Campaign.query.get(campaign_id)
+
+    return jsonify(campaign.serialize)
