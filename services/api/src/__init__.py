@@ -1,17 +1,16 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_migrate import Migrate
-from .config import Config
-from .blueprints.campaign import campaign_blueprint
-from .blueprints.root import root_blueprint
-from .models import db
+from src.blueprints.campaign import campaign_blueprint
+from src.blueprints.root import root_blueprint
+from src.models import db
 
 migrate = Migrate()
 
 
-def create_app(config_class):
+def create_app(config):
     app = Flask(__name__)
-    app.config.from_object(config_class)
+    app.config.from_object(config)
 
     # DO NOT deploy this application to a production environment without first adjusting
     # the CORS settings

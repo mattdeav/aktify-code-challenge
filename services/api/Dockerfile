@@ -15,8 +15,10 @@ RUN pip3 install -r /requirements.txt
 # [STAGE] development (runtime)
 FROM base as development
 
-WORKDIR /app
+ARG APP_PATH=/app
+WORKDIR $APP_PATH
 
-ENV FLASK_APP=src/app.py
+ENV PYTHON_PATH=$APP_PATH
+ENV FLASK_APP=${APP_PATH}/src/app.py
 
 CMD ["./entrypoint.sh"]

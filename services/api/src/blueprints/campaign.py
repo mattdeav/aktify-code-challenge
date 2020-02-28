@@ -1,6 +1,6 @@
 from flask import Blueprint
 from flask.json import jsonify
-from ..models import Campaign
+from src.models import Campaign
 
 campaign_blueprint = Blueprint('campaign', __name__, url_prefix='/campaigns')
 
