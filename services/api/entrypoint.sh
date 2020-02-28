@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Run test suite. Running these here is strictly for development convenience. This would
+#  be a bad idea in production, given the time it takes to start the API.
+pytest
+
 # Upgrades the database with the latest migrations. This should not be done here. It's
 #  considered best practice to separate these operations. This is merely for convenience.
 flask db upgrade

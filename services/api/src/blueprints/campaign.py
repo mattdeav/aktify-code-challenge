@@ -14,6 +14,12 @@ def index():
 
 @campaign_blueprint.route('/<campaign_id>', methods=['GET'])
 def get(campaign_id):
+    if not campaign_id.isdigit():
+        return jsonify({'message': 'id must be an integer'}), 422
+
     campaign = Campaign.query.get(campaign_id)
+
+    if not campaign:
+        return jsonify({'message': 'Campaign not found.'}), 404
 
     return jsonify(campaign.serialize)

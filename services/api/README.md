@@ -10,6 +10,7 @@ By default, the API can be accessed at http://localhost:5051.
 - [Architecture](#architecture)
     - [Patterns](#patterns)
     - [Data access](#data-access)
+- [Testing](#testing)
 - [Best practices](#best-practices)
 
 
@@ -42,10 +43,20 @@ You should test Flask-Migrate migrations before making commits. You can do this 
 - `flask db downgrade` to undo the last revision
 
  
+ ## Testing
+
+_Aktify Code Challenge API_ uses [PyTest](https://docs.pytest.org/en/latest/) and [PyTest-watch](https://github.com/joeyespo/pytest-watch) for automated testing. The test suite is run immediately before the API is initialized. If the tests are not passing, the API server will not start.
+
+To automatically run the test suite when a file changes, start PyTest-watch with the following commands:
+
+1. `docker-compose exec api sh`
+1. `ptw`
+ 
+ 
  ## Best practices
  
  Pay special attention to the following best practices:
  
- - **_Test_** All code should be appropriately unit tested (mocked dependencies) and feature tested (actually accessing a database). Unit tests are very fast and can be run during a build and feature tests ensure that the entire request is working end-to-end.
+ - **_Test_** All routes should be feature tested (actually accessing a database). Feel free to manipulate the database to achieve the state you need. _See the files under [test/](test/blueprints) for examples._
  - **_Understand your queries_** SQLAlchemy is a powerful ORM, but "with great power comes great responsibility". Understand what queries are actually executed when using SQLAlchemy models.
  
