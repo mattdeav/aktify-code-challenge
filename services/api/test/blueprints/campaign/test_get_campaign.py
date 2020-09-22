@@ -27,7 +27,7 @@ def test_get_campaign_invalid_id(client):
 
 def test_get_campaign_ok(client, session):
     # With a campaign in the DB
-    campaign1 = Campaign(name='Campaign 1')
+    campaign1 = Campaign(name='Campaign 1', is_active=True)
     session.add(campaign1)
     session.commit()
 

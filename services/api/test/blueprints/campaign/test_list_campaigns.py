@@ -17,8 +17,8 @@ def test_list_campaigns_empty(client):
 
 def test_list_campaigns_non_empty(client, session):
     # With campaigns in the DB
-    campaign1 = Campaign(name='Campaign 1')
-    campaign2 = Campaign(name='Campaign 2')
+    campaign1 = Campaign(name='Campaign 1', is_active=True)
+    campaign2 = Campaign(name='Campaign 2', is_active=False)
     session.add(campaign1)
     session.add(campaign2)
     session.commit()
